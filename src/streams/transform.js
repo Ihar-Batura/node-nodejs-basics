@@ -4,7 +4,7 @@ import { Transform } from 'stream';
 const transformData = new Transform({
   transform(chunk, _, callback) {
     const reverseData = chunk.toString().trim().split('').reverse().join('');
-    callback(null, reverseData);
+    callback(null, reverseData + '\n');
   },
 });
 
