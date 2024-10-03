@@ -1,5 +1,15 @@
+import process from 'process';
+import { Transform } from 'stream';
+
+const transformData = new Transform({
+  transform(chunk, _, callback) {
+    const reverseData = chunk.toString().trim().split('').reverse().join('');
+    callback(null, reverseData + '\n');
+  },
+});
+
 const transform = async () => {
-    // Write your code here 
+  process.stdin.pipe(transformData).pipe(process.stdout);
 };
 
 await transform();
